@@ -1,0 +1,84 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  background: #000000;
+  color: #f4f4f4;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  padding-top: 56px;
+  height: 56vh;
+}
+
+button {
+  outline: none;
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: none;
+  margin: 4px 4px;
+}
+input, textarea {
+  background: transparent;
+  color: white;
+  padding: 4px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 12px;
+}
+
+table {
+  margin-top: 32px;
+  border-collapse: collapse;
+
+  td,
+  th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04aa6d;
+    color: white;
+  }
+
+  tr:nth-child(even) {
+    background-color: #171616;
+  }
+
+  tr:hover {
+    background-color: rgb(86, 86, 86);
+  }
+}
+.inputcontainer {
+  margin-top: 24px;
+
+  label {
+    width: 100%;
+    margin: 4px;
+    display: block;
+  }
+
+  input,textarea {
+    width: 100%;
+  }
+}
+a {
+  text-decoration: none !important;
+  outline: none;
+  padding: 4px 8px;
+  border-radius: 12px;
+  border: none;
+  margin: 4px 4px;
+  background-color: #ddd;
+  color: #171616;
+}
+// #1d2226  gris bonito

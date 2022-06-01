@@ -1,0 +1,13 @@
+.maincontent{
+  height: 84vh;
+  // width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-x: none;
+  overflow-y: scroll;
+}
+
+.content{
+  width: 1024px;
+  padding: 32px;
+}
