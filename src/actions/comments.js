@@ -9,7 +9,6 @@ export const getComments = () => {
       const body = await resp.json()
 
       dispatch(commentSetList(body.data))
-      
     } catch (error) {
       console.log(error)
     }
@@ -19,32 +18,55 @@ export const getComments = () => {
 export const SaveComment = (formData) => {
   return async (dispatch, getState) => {
     try {
-      const resp = await fetchWithOutToken("comments", formData, 'POST' );
-      const body = await resp.json();
+      const resp = await fetchWithOutToken("comments", formData, "POST")
+      const body = await resp.json()
 
       // TODO Validate error no time !!!!!
       console.log(body)
-  
     } catch (error) {
       console.log(error)
     }
   }
 }
 
-export const GetComment = (formData) => {
+export const EditComment = (formData) => {
   return async (dispatch, getState) => {
     try {
-      const resp = await fetchWithOutToken("comments", 'GET' );
-      const body = await resp.json();
+      const resp = await fetchWithOutToken("comments", formData, "PUT")
+      const body = await resp.json()
 
       // TODO Validate error no time !!!!!
       console.log(body)
-  
     } catch (error) {
       console.log(error)
     }
   }
 }
+
+export const GetComment = (id) => {
+  return async (dispatch, getState) => {
+    try {
+      const resp = await fetchWithOutToken(`comments/${id}`, "GET")
+      const body = await resp.json()
+
+      // TODO Validate error no time !!!!!
+      console.log("no entoinendo ", body)
+      dispatch(commentSetActual(body.data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+const commentSetActual = (data) => ({
+  type: types.commetActive,
+  payload: data,
+})
+
+export const commentClearActual = (data) => ({
+  type: types.commentClearActive,
+  payload: data,
+})
 
 
 const commentSetList = (data) => ({

@@ -1,40 +1,50 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useForm } from "../../hooks/useForm"
-import { useDispatch } from "react-redux"
-import { SaveComment } from "../../actions/comments"
+import { useDispatch, useSelector } from "react-redux"
+import {
+  SaveComment,
+  GetComment,
+  EditComment,
+  commentClearActual,
+} from "../../actions/comments"
 
 const baseUrl = process.env.REACT_APP_API_URL
 
 export const Form = ({ id }) => {
   // recupera el date
+
+  const [ID, setID] = useState(id)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { commentActual } = useSelector((state) => state.comment)
 
-  const [formValues, handleInputChange] = useForm({
-    name: "Alexander Nova",
-    email: "alex@alex.com",
-    website: "https://alexsk88.org",
-    comments: "Hola no me alcanzo el time to do this mierda",
-  })
+  const [formValues, handleInputChange,setdata] = useForm(commentActual)
 
-  // useEffect(() => {
-  //   if (id) {
-  //     // Get Data abot id
-  //   }
-  // }, [id])
+  useEffect(() => {
+    const getData = async () => {
+      if (id) {
+        await dispatch(GetComment(id))
+        setdata(commentActual)
+      }
+    }
+    getData()
+
+    // return () => {
+    //   dispatch(commentClearActual())
+    // }
+  }, [ID])
 
   const handleSearch = async (e) => {
     e.preventDefault()
 
-    console.log("== ", formValues)
-
-    // No time to custom validate :'(
-    await dispatch(SaveComment(formValues))
+    if (id) {
+      await dispatch(EditComment(formValues, id))
+    } else {
+      await dispatch(SaveComment(formValues))
+    }
 
     navigate("/", { replace: true })
-
-    // history.push("/search?q=" + formValues.searchText)
   }
 
   return (
